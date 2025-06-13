@@ -13,7 +13,7 @@ Example: `2025-06-13-audio-system-implementation.md`
 ## Template for Session Logs
 
 ```markdown
-# Session: [Date] - [Duration / Brief Description]
+## Session: [Date] - [Duration / Brief Description]
 
 ### Accomplished
 - [Specific features, fixes, or improvements]
