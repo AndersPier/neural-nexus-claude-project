@@ -21,7 +21,7 @@
 ## Device Testing Results
 
 ### Desktop Performance
-```
+```markdown
 MacBook Pro M1 (2021):
 - Chrome: 60fps solid
 - Safari: 60fps solid
@@ -38,7 +38,7 @@ Ubuntu 20.04 (AMD Ryzen 5):
 ```
 
 ### Mobile Performance
-```
+```markdown
 iPhone 12 Pro:
 - Safari: 50-60fps
 - Touch responsiveness: Excellent
