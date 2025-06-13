@@ -11,7 +11,7 @@
 ### Recovery Steps
 
 #### 1. Immediate Assessment
-```
+```markdown
 # Emergency Context Recovery Protocol
 
 I've lost context about this project's current state. Please help me reconstruct our situation:
@@ -201,7 +201,7 @@ git cherry-pick [commit-hash]
 - Features not integrating well
 
 #### Recovery Process
-```
+```markdown
 # Architecture Drift Analysis and Recovery
 
 Our current implementation seems to have drifted from our original architectural intentions. Please help analyze and resolve this:
