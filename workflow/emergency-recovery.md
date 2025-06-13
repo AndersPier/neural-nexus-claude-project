@@ -78,7 +78,7 @@ Provide a comprehensive reconstruction to get us back on track.
 #### Recovery Steps
 ```bash
 # 1. Check browser console
-F12 -> Console tab
+# F12 -> Console tab
 # Look for error messages
 
 # 2. Revert to last working version
