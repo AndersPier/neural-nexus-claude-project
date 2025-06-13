@@ -55,7 +55,7 @@ neural-nexus-claude-project/
 ### 2. Daily Workflow
 
 **Start Each Session:**
-```bash
+```
 # Use this prompt (from templates/session-start-prompt.md):
 Neural Nexus development check-in:
 
@@ -79,7 +79,7 @@ Keep response concise and action-oriented to start productive development.
 ```
 
 **End Each Session (CRITICAL):**
-```bash
+```
 # Always use this prompt (from templates/session-end-prompt.md):
 Neural Nexus session wrap-up:
 
