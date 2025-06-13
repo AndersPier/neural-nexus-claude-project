@@ -69,7 +69,7 @@ const timeLimit = Math.max(45, 60 - Math.floor(level / 3) * 2);
 - Forgiving time limits
 
 **Example Patterns:**
-```markdown
+```
 Level 1: O---O---O        (3 nodes, 2 connections)
 Level 2: O---O---O---O    (4 nodes, 3 connections)
 Level 3:   O               (5 nodes, 4 connections)
@@ -94,7 +94,7 @@ Level 3:   O               (5 nodes, 4 connections)
 - Moderate time pressure
 
 **Example Patterns:**
-```markdown
+```
 Level 8:  O-O-O     (6 nodes, 7 connections)
           |/|\|
           O-O-O
@@ -124,7 +124,7 @@ Level 12:   O       (8 nodes, 11 connections)
 - Multiple interdependent components
 
 **Example Patterns:**
-```markdown
+```
 Level 20: O-O-O-O    (10 nodes, 16 connections)
           |X|X|X|    (X represents crossing connections)
           O-O-O-O
