@@ -18,6 +18,7 @@ neural-nexus-claude-project/
 ├── knowledge-base/
 │   ├── game-design/
 │   │   ├── core-mechanics.md          # Game mechanics and connection system documentation
+│   │   ├── level-progression.md       # Difficulty scaling, pattern generation, and player skill development
 │   │   ├── scoring-system.md          # Points calculation and player reward systems
 │   │   └── visual-design-guide.md     # Complete visual design system and styling guide
 │   ├── technical/
@@ -97,6 +98,7 @@ Neural Nexus development check-in:
 
 #### Game Design
 - **core-mechanics.md**: Connection system, node types, level generation, and difficulty progression documentation
+- **level-progression.md**: Comprehensive difficulty scaling algorithm, pattern generation phases, player skill development, and balancing principles with A/B testing framework
 - **scoring-system.md**: Points calculation, time bonuses, accuracy multipliers, and player reward psychology
 - **visual-design-guide.md**: Complete visual design system including color palette, typography, layout, animations, and responsive design
 
