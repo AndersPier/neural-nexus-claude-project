@@ -7,7 +7,7 @@ This file tracks development sessions for Neural Nexus. Add a new entry after ea
 ## Template for New Entries
 
 ```markdown
-## Session: [Date] - [Duration]
+## Session: [Date] - [Duration / Brief Description]
 
 ### Accomplished
 - [Specific features, fixes, or improvements]
