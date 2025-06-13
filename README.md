@@ -47,7 +47,7 @@ neural-nexus-claude-project/
 
 **Create Your Claude Project:**
 1. Go to Claude Projects
-2. Name it: `NeuralNexus - Prototype`
+2. Name it: ```NeuralNexus - Prototype```
 3. Copy the project description from `project-config/project-description.md`
 4. Copy the custom instructions from `project-config/project-instructions.md`
 5. Upload the documentation files to the Knowledge Base
