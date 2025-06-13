@@ -2,15 +2,17 @@
 
 ## Context Loss Recovery
 
-### When to Use
-- Claude has lost track of project progress
-- Responses don't reflect recent work or decisions
-- Claude asks about things already established
-- Contradictory suggestions to previous decisions
+### Symptoms
+- Claude doesn't remember recent project decisions
+- Having to re-explain game mechanics or architecture
+- Contradictory suggestions from previous sessions
+- Unclear about current development stage or priorities
 
-### Recovery Protocol
+### Recovery Steps
+
+#### 1. Immediate Assessment
 ```
-# Context Loss Emergency Recovery
+# Emergency Context Recovery Protocol
 
 I've lost context about this project's current state. Please help me reconstruct our situation:
 
@@ -54,332 +56,228 @@ I've lost context about this project's current state. Please help me reconstruct
 Provide a comprehensive reconstruction to get us back on track.
 ```
 
-## Performance Degradation Recovery
+#### 2. Documentation Review
+- Check session logs in `knowledge-base/development/session-logs/`
+- Review recent decisions in `knowledge-base/development/decision-history.md`
+- Update project description if needed
 
-### Quick Performance Diagnostics
+#### 3. Knowledge Base Refresh
+- Re-upload critical documents to Claude Project
+- Update project instructions with current focus
+- Archive outdated information
+
+## Technical Issues Recovery
+
+### Game Won't Load
+
+#### Symptoms
+- Blank screen or error messages
+- JavaScript console errors
+- Performance issues
+
+#### Recovery Steps
+```bash
+# 1. Check browser console
+F12 -> Console tab
+# Look for error messages
+
+# 2. Revert to last working version
+git log --oneline -10  # See recent commits
+git checkout [last-working-commit]
+
+# 3. Test in clean environment
+# Open in incognito/private browsing
+# Try different browser
+
+# 4. Check file integrity
+# Ensure index.html is complete
+# Verify no corrupted files
+```
+
+### Performance Degradation
+
+#### Symptoms
+- Frame rate drops below 30fps
+- Stuttering animations
+- High memory usage
+- Unresponsive controls
+
+#### Recovery Steps
 ```javascript
-// Emergency performance diagnostics
-function emergencyPerformanceCheck() {
-  console.log('=== EMERGENCY PERFORMANCE CHECK ===');
-  
-  // Frame rate check
-  let frameCount = 0;
-  let startTime = performance.now();
-  
-  function checkFrameRate() {
-    frameCount++;
-    const currentTime = performance.now();
-    
-    if (currentTime - startTime >= 1000) {
-      console.log(`Current FPS: ${frameCount}`);
-      frameCount = 0;
-      startTime = currentTime;
+// 1. Enable performance monitoring
+function enableDebugMode() {
+  window.gameDebug = {
+    frameTime: [],
+    avgFrameTime: function() {
+      const avg = this.frameTime.reduce((a,b) => a+b) / this.frameTime.length;
+      console.log(`Average frame time: ${avg.toFixed(2)}ms`);
+      return avg;
+    },
+    clearFrameData: function() {
+      this.frameTime = [];
     }
-    
-    requestAnimationFrame(checkFrameRate);
-  }
-  
-  checkFrameRate();
-  
-  // Memory check
-  if (performance.memory) {
-    const memory = performance.memory;
-    console.log(`Memory usage: ${(memory.usedJSHeapSize / 1024 / 1024).toFixed(2)} MB`);
-    console.log(`Memory limit: ${(memory.jsHeapSizeLimit / 1024 / 1024).toFixed(2)} MB`);
-  }
-  
-  // Canvas performance check
-  const canvas = document.getElementById('gameCanvas');
-  console.log(`Canvas size: ${canvas.width}x${canvas.height}`);
-  
-  // Active objects count
-  console.log(`Active nodes: ${gameState.nodes.length}`);
-  console.log(`Active connections: ${gameState.connections.length}`);
-  console.log(`Active particles: ${gameState.particles.length}`);
+  };
 }
+
+// 2. Identify performance bottlenecks
+// Use browser DevTools Performance tab
+// Profile 5-10 seconds of gameplay
+// Look for long tasks or memory leaks
+
+// 3. Disable features systematically
+// Comment out particle effects
+// Reduce node count
+// Simplify rendering
 ```
 
-## Technical Debt Crisis Recovery
+### Repository Issues
 
-### Crisis Indicators
-- Development velocity significantly slowed
-- Simple changes require extensive refactoring
-- Bugs in one area cause problems elsewhere
-- New developers cannot understand codebase
-- Performance degrading with each new feature
-
-### Recovery Protocol
-```
-# Technical Debt Crisis Management
-
-Technical debt has accumulated to critical levels. Help me assess and create a recovery plan:
-
-## 📊 DEBT ASSESSMENT
-**Code Quality Issues:**
-- Identify areas with the highest technical debt
-- Assess impact on development velocity
-- Find code that's difficult to understand or modify
-- Locate performance bottlenecks caused by poor design
-
-**Architectural Problems:**
-- Document architectural inconsistencies
-- Identify tight coupling between components
-- Find areas where changes cascade unpredictably
-- Assess test coverage and maintainability
-
-## ⚖️ DEBT PRIORITIZATION
-**Critical Debt (Immediate Action):**
-- Issues completely blocking new development
-- Security vulnerabilities or data integrity risks
-- Performance problems affecting user experience
-
-**High-Priority Debt (Address This Sprint):**
-- Issues slowing development significantly
-- Code that's difficult to modify safely
-- Missing tests for critical functionality
-
-**Manageable Debt (Plan for Future):**
-- Cosmetic code issues
-- Documentation gaps
-- Minor performance optimizations
-
-## 🚀 RECOVERY STRATEGY
-**Emergency Stabilization (This Week):**
-1. [Action] - [Impact] - [Effort] - [Risk]
-
-**Systematic Debt Reduction (Next 2-4 weeks):**
-1. [Action] - [Impact] - [Effort] - [Timeline]
-
-**Prevention Measures (Ongoing):**
-1. [Process] - [Benefit] - [Implementation]
-
-Provide a concrete plan to restore development velocity while managing risk.
-```
-
-## Build/Deployment Failures
-
-### Common Failure Modes
-- Game won't load in browser
-- JavaScript errors breaking functionality
-- Performance degradation after deployment
-- Features working locally but failing in production
-
-### Emergency Rollback
+#### Corrupted Git Repository
 ```bash
-# Quick rollback to last known good state
-git log --oneline -10  # Find last good commit
-git reset --hard [good-commit-hash]  # Rollback code
-git push --force-with-lease origin main  # Update remote (use carefully)
+# 1. Check repository status
+git status
+git log --oneline -5
 
-# Alternative: Create hotfix
-git checkout -b hotfix/emergency-fix
-# Fix critical issue
-git commit -m "hotfix: resolve critical issue"
-git checkout main
-git merge hotfix/emergency-fix
-git push origin main
+# 2. If corrupted, clone fresh copy
+cd ..
+git clone https://github.com/AndersPier/neural-nexus-game.git neural-nexus-game-backup
+cd neural-nexus-game-backup
+
+# 3. Copy work in progress
+# Manually copy changes from original directory
 ```
 
-### Debugging Checklist
-```markdown
-**Browser Console Errors:**
-- [ ] Check for JavaScript errors
-- [ ] Verify all assets are loading
-- [ ] Check network requests for failures
-- [ ] Validate CSS is loading correctly
-
-**Performance Issues:**
-- [ ] Check frame rate in DevTools
-- [ ] Monitor memory usage over time
-- [ ] Verify Canvas size and resolution
-- [ ] Check for memory leaks
-
-**Functionality Broken:**
-- [ ] Test core game mechanics
-- [ ] Verify touch/mouse interactions
-- [ ] Check level generation
-- [ ] Validate score calculation
-
-**Cross-browser Issues:**
-- [ ] Test in Chrome, Firefox, Safari
-- [ ] Check mobile browsers (iOS Safari, Android Chrome)
-- [ ] Verify on different screen sizes
-- [ ] Test with and without internet connection
-```
-
-## Project Corruption Recovery
-
-### Signs of Corruption
-- Claude Project not loading or responding
-- Knowledge base files corrupted or missing
-- Project instructions not being followed
-- Complete loss of context across sessions
-
-### Recovery Steps
-
-#### 1. Backup Current State
+#### Lost Commits
 ```bash
-# Clone current repositories
-git clone https://github.com/AndersPier/neural-nexus-claude-project.git backup-claude-project
-git clone https://github.com/AndersPier/neural-nexus-game.git backup-game
+# 1. Check reflog
+git reflog
 
-# Create recovery branch
-cd neural-nexus-claude-project
-git checkout -b recovery-$(date +%Y%m%d)
-git push origin recovery-$(date +%Y%m%d)
+# 2. Find lost commit
+git show [commit-hash]
+
+# 3. Recover if needed
+git cherry-pick [commit-hash]
 ```
 
-#### 2. Create New Claude Project
-```markdown
-**Emergency Project Recreation:**
+## Development Environment Recovery
 
-1. **Create New Project**: "NeuralNexus - Recovery"
-2. **Copy Configuration**: Use latest project-config/ files
-3. **Upload Documentation**: All knowledge-base/ files
-4. **Test Context**: Run simple query to verify function
-5. **Update Links**: Point to new project in documentation
-```
-
-#### 3. Validate Recovery
-```
-# Recovery Validation Prompt
-
-Test the recovered project context:
-
-**Context Verification:**
-- What is the current development stage?
-- What are our immediate priorities?
-- What's our technology stack?
-- What performance targets do we have?
-
-**Knowledge Base Check:**
-- Can you access our game design documentation?
-- Do you remember our architectural decisions?
-- Are our workflow templates available?
-
-**Functionality Test:**
-- Suggest next steps for audio system implementation
-- Provide performance optimization recommendations
-- Reference our established coding patterns
-
-Confirm all systems are working properly.
-```
-
-## Data Loss Prevention
-
-### Automated Backups
+### Editor/IDE Issues
 ```bash
-# Daily backup script (run via cron)
-#!/bin/bash
-DATE=$(date +%Y%m%d)
-BACKUP_DIR="$HOME/neural-nexus-backups/$DATE"
+# 1. Reset editor settings
+# VS Code: Command Palette -> "Reload Window"
+# Other editors: Close and restart
 
-mkdir -p "$BACKUP_DIR"
+# 2. Clear editor cache
+# VS Code: Remove .vscode/settings.json if corrupted
 
-# Backup Claude Project repo
-git clone https://github.com/AndersPier/neural-nexus-claude-project.git "$BACKUP_DIR/claude-project"
-
-# Backup Game repo  
-git clone https://github.com/AndersPier/neural-nexus-game.git "$BACKUP_DIR/game"
-
-# Compress backups older than 7 days
-find "$HOME/neural-nexus-backups" -type d -mtime +7 -exec tar -czf {}.tar.gz {} \; -exec rm -rf {} \;
-
-echo "Backup completed: $BACKUP_DIR"
+# 3. Verify file associations
+# Ensure .html, .js, .css files open correctly
 ```
 
-### Recovery Documentation
-```markdown
-# Emergency Contact Information
+### Browser Issues
+```bash
+# 1. Clear browser cache
+# Chrome: Ctrl+Shift+Delete
+# Firefox: Ctrl+Shift+Delete
+# Safari: Develop -> Empty Caches
 
-**Repository Locations:**
-- Claude Project: https://github.com/AndersPier/neural-nexus-claude-project
-- Game Repository: https://github.com/AndersPier/neural-nexus-game
-- Live Game: https://andersPier.github.io/neural-nexus-game/
+# 2. Disable extensions
+# Test in incognito/private mode
+# Disable ad blockers and dev extensions
 
-**Critical Files:**
-- Project Config: project-config/project-description.md
-- Project Instructions: project-config/project-instructions.md
-- Session Templates: templates/
-- Core Documentation: knowledge-base/
+# 3. Reset browser if needed
+# Create new browser profile
+# Test with different browser entirely
+```
 
-**Recovery Priority:**
-1. Game repository (contains working product)
-2. Project configuration (enables Claude workflow)
-3. Knowledge base (captures decisions and patterns)
-4. Templates (workflow efficiency)
+## Project Health Recovery
+
+### Architecture Drift
+
+#### Symptoms
+- Code doesn't follow established patterns
+- Inconsistent naming conventions
+- Technical debt accumulating
+- Features not integrating well
+
+#### Recovery Process
+```
+# Architecture Drift Analysis and Recovery
+
+Our current implementation seems to have drifted from our original architectural intentions. Please help analyze and resolve this:
+
+## 🏗️ CURRENT STATE ANALYSIS
+**Implementation Reality:**
+- Document how our current code is actually structured
+- Identify the patterns we're actually using (not what we planned)
+- Note any informal conventions that have emerged
+- Assess the current data flow and component relationships
+
+**Deviation Assessment:**
+- Compare current implementation with our documented architecture
+- Identify specific areas where we've diverged from the plan
+- Analyze when and why these deviations occurred
+- Determine if deviations were conscious decisions or gradual drift
+
+## ⚖️ DRIFT EVALUATION
+**Beneficial Drift (Should Embrace):**
+- Which deviations have actually improved our architecture?
+- What patterns emerged organically that work better than planned?
+- Are there performance or maintainability improvements from drift?
+
+**Harmful Drift (Should Correct):**
+- Which deviations are causing problems or technical debt?
+- What inconsistencies make the codebase harder to maintain?
+- Are there security or performance regressions from drift?
+
+## 🎯 RESOLUTION STRATEGY
+**Immediate Actions (This Sprint):**
+1. [Action] - [Rationale] - [Effort estimate]
+
+**Short-term Alignment (Next 2-4 weeks):**
+1. [Action] - [Rationale] - [Effort estimate]
+
+**Long-term Architecture Evolution:**
+1. [Action] - [Rationale] - [Effort estimate]
+
+Provide specific, actionable recommendations for resolving architecture uncertainty.
 ```
 
 ## Prevention Strategies
 
-### Regular Health Checks
-```markdown
-**Weekly Health Check:**
-- [ ] Test Claude Project responsiveness
-- [ ] Verify all repository links work
-- [ ] Check game deployment status
-- [ ] Validate documentation is current
-- [ ] Confirm backup systems functioning
+### Daily Habits
+- Always complete session end consolidation
+- Commit changes frequently with clear messages
+- Test on multiple devices regularly
+- Document architectural decisions immediately
 
-**Monthly Deep Check:**
-- [ ] Full context recovery test
-- [ ] Performance baseline verification
-- [ ] Knowledge base organization review
-- [ ] Template effectiveness assessment
-- [ ] Emergency procedure practice run
-```
+### Weekly Reviews
+- Assess project health honestly
+- Update documentation and knowledge base
+- Plan upcoming work clearly
+- Archive completed work
 
-### Monitoring Setup
-```javascript
-// Project health monitoring
-class ProjectHealthMonitor {
-  constructor() {
-    this.healthChecks = [];
-    this.alerts = [];
-  }
-  
-  addHealthCheck(name, checkFunction, interval) {
-    setInterval(() => {
-      try {
-        const result = checkFunction();
-        this.recordHealth(name, result);
-      } catch (error) {
-        this.recordAlert(name, error);
-      }
-    }, interval);
-  }
-  
-  recordHealth(check, result) {
-    this.healthChecks.push({
-      check,
-      result,
-      timestamp: Date.now(),
-      status: result.healthy ? 'good' : 'warning'
-    });
-  }
-  
-  recordAlert(check, error) {
-    this.alerts.push({
-      check,
-      error: error.message,
-      timestamp: Date.now(),
-      severity: 'high'
-    });
-    
-    console.error(`Health check failed: ${check}`, error);
-  }
-  
-  getHealthReport() {
-    const recent = this.healthChecks.slice(-20);
-    const recentAlerts = this.alerts.slice(-5);
-    
-    return {
-      overallHealth: recent.filter(h => h.status === 'good').length / recent.length,
-      recentAlerts,
-      lastCheck: recent[recent.length - 1]?.timestamp
-    };
-  }
-}
-```
+### Monthly Audits
+- Review codebase for consistency
+- Assess technical debt levels
+- Update development workflows
+- Validate architectural decisions
 
-Remember: The best recovery is prevention. Regular consolidation, systematic documentation, and proactive monitoring prevent most emergencies from occurring.
+## Emergency Contacts
+
+### Technical Resources
+- **MDN Web Docs**: https://developer.mozilla.org/
+- **Canvas API Reference**: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
+- **Performance Optimization**: https://web.dev/performance/
+
+### Community Support
+- **Stack Overflow**: For specific technical issues
+- **GitHub Discussions**: For project-specific questions
+- **Discord/Reddit**: Game development communities
+
+### Backup Plans
+- **Repository Backup**: Always maintain local and cloud copies
+- **Documentation Backup**: Export knowledge base regularly
+- **Contact Lists**: Maintain list of helpful community members
+
+Remember: Most "emergencies" can be prevented with good daily habits. When they do occur, stay calm and work through recovery procedures systematically.
