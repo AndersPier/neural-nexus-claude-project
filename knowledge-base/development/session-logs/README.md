@@ -4,7 +4,7 @@ This directory contains logs from development sessions. Use these to track progr
 
 ## File Naming Convention
 
-```
+```markdown
 YYYY-MM-DD-session-brief-description.md
 ```
 
