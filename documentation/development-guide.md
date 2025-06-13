@@ -36,7 +36,7 @@ Neural Nexus is a modern HTML5 puzzle game that challenges players to connect ne
 ## Architecture
 
 ### System Design
-```
+```markdown
 ┌─────────────────┐     ┌─────────────────┐
 │   Game UI       │────▶│   Game State    │
 │ (Canvas/HTML)   │     │   Manager       │
