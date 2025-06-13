@@ -58,10 +58,24 @@ neural-nexus-claude-project/
 ```bash
 # Use this prompt (from templates/session-start-prompt.md):
 Neural Nexus development check-in:
+
+**SESSION FOCUS:**
 - What game feature are we working on today?
 - Any performance issues or player feedback from last session?
 - Which devices should we test the latest changes on?
 - Priority focus: gameplay mechanics, visual polish, or technical optimization?
+
+**QUICK STATUS:**
+- Current build status and any blockers?
+- Recent player testing feedback or observations?
+- Performance metrics from last session?
+
+**TODAY'S GOALS:**
+- Primary objective for this session?
+- Secondary tasks if time permits?
+- Any experimental features to explore?
+
+Keep response concise and action-oriented to start productive development.
 ```
 
 **End Each Session (CRITICAL):**
