@@ -81,7 +81,38 @@ Keep response concise and action-oriented to start productive development.
 **End Each Session (CRITICAL):**
 ```bash
 # Always use this prompt (from templates/session-end-prompt.md):
-# [See full template in templates/ directory]
+Neural Nexus session wrap-up:
+
+**ACCOMPLISHED TODAY:**
+- [Specific features implemented or bugs fixed]
+- [Performance improvements or optimizations made]
+- [User experience enhancements added]
+
+**GAME DESIGN DECISIONS:**
+- [Difficulty balancing choices and reasoning]
+- [Visual or audio design decisions made]
+- [Technical architecture choices and trade-offs]
+
+**NEXT SESSION PRIORITY:**
+- [Most important game feature or improvement to work on]
+- [Specific technical goal or gameplay element]
+
+**GAME HEALTH:** [Green/Yellow/Red]
+- Performance: [60fps achieved/needs optimization/concerning issues]
+- Fun factor: [highly engaging/needs refinement/major issues]
+- Technical debt: [clean code/manageable/needs refactoring]
+
+**TESTING NOTES:**
+- [Devices and browsers tested on]
+- [Player feedback or usability observations]
+- [Performance metrics and frame rate data]
+
+**KNOWLEDGE BASE UPDATES NEEDED:**
+- [New patterns or techniques to document]
+- [Design decisions to capture]
+- [Performance findings to record]
+
+Provide structured, actionable information for knowledge consolidation.
 ```
 
 ### 3. Knowledge Base Management
