@@ -11,7 +11,7 @@ open http://localhost:8000  # if using local server
 
 ### 2. Context Refresh
 Use the session start prompt:
-```
+```markdown
 Neural Nexus development check-in:
 - What game feature are we working on today?
 - Any performance issues or player feedback from last session?
@@ -34,7 +34,7 @@ Neural Nexus development check-in:
 - **Document Decisions**: Note why you chose specific approaches
 
 ### Testing Workflow
-```bash
+```markdown
 # After each significant change:
 1. Test on desktop browser
 2. Test on mobile device (if applicable)
@@ -61,7 +61,7 @@ git push origin main
 
 ### 2. Session Consolidation
 **CRITICAL**: Always use the session end prompt:
-```
+```markdown
 Neural Nexus session wrap-up:
 
 **ACCOMPLISHED TODAY:**
