@@ -2,7 +2,7 @@
 
 ## Welcome! 👋
 
-This guide will help you get the most out of Neural Nexus. No technical knowledge required - we'll walk you through everything step by step.
+Neural Nexus is a modern puzzle game where you connect neural network nodes to form specific patterns. No technical knowledge required - we'll guide you through everything step by step!
 
 ## Table of Contents
 
@@ -38,12 +38,12 @@ Neural Nexus is a brain-training puzzle game that challenges you to connect glow
 
 **On Your Computer:**
 1. Open your web browser (Chrome, Firefox, Safari, or Edge)
-2. Navigate to: https://andersPier.github.io/neural-nexus-game/
+2. Navigate to the game page
 3. Bookmark it for easy access later!
 
 **On Your Phone or Tablet:**
 1. Open your mobile browser
-2. Visit: https://andersPier.github.io/neural-nexus-game/
+2. Visit the game page
 3. Tap "Add to Home Screen" for app-like access
 4. The game works great in full-screen mode!
 
@@ -91,8 +91,6 @@ When you first open Neural Nexus, you'll see:
 - **Level Multiplier:** Higher levels give more points
 - **Perfect Completion:** Bonus points for completing without mistakes
 
-**When you'd use this:** Track your improvement over time and challenge yourself to beat your high score!
-
 ### ⏰ **Timer Challenge**
 
 **What it does:** Each level has a time limit that creates urgency and excitement
@@ -102,8 +100,6 @@ When you first open Neural Nexus, you'll see:
 - Time decreases slightly as levels get harder
 - Complete the pattern before time runs out
 - Faster completion = higher score!
-
-**Strategy tip:** Don't panic! Take a moment to study the pattern before making connections.
 
 ## Game Mechanics
 
@@ -130,8 +126,6 @@ When you first open Neural Nexus, you'll see:
 **Level 6-15:** Increased complexity with more nodes  
 **Level 16-25:** Advanced patterns requiring strategy  
 **Level 26+:** Master-level challenges for experts  
-
-Each level introduces new elements gradually, so you'll never feel overwhelmed!
 
 ## Tips & Tricks
 
@@ -242,46 +236,6 @@ A: Your current session progress is maintained while playing, but progress doesn
 
 **Q: Can I play offline?**
 A: You need an internet connection to load the game initially, but once loaded, it should work without internet for your current session.
-
-### Performance Questions
-
-**Q: Why is the game running slowly?**
-A: Neural Nexus is optimized for performance, but if you experience slowdown:
-- Close other browser tabs
-- Make sure your device has sufficient battery
-- Try using a different browser
-- Restart your browser if the issue persists
-
-**Q: The connections don't seem responsive**
-A: This usually indicates:
-- Your device may be running low on memory
-- Try refreshing the page
-- On mobile, ensure you're touching directly on the nodes
-- Check that no other apps are using significant resources
-
----
-
-## Quick Reference Card
-
-Print this section and keep it handy!
-
-### Essential Controls
-- **Connect Nodes:** Click/tap and drag between nodes
-- **View Pattern:** Look for dotted white lines
-- **Restart:** Refresh page or wait for timer to end
-
-### Winning Strategy
-1. Study the dotted pattern first
-2. Plan your connection sequence  
-3. Start with obvious connections
-4. Work systematically, don't rush
-5. Complete pattern before time runs out
-
-### When You're Stuck
-- Take a deep breath and study the pattern again
-- Look for isolated nodes that only connect to one other
-- Start with the simplest connections first
-- Remember: the dotted lines show you exactly what to do
 
 ---
 
