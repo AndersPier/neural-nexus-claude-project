@@ -1,24 +1,18 @@
-# Session Log - [Date] - [Brief Description]
+## Session: [Date] - [Duration / Brief Description]
 
-## Session Goals
-- [Primary objective]
-- [Secondary objectives]
+### Accomplished
+- [Specific features, fixes, or improvements]
 
-## Accomplished
-- [What was completed]
-- [Decisions made]
-- [Problems solved]
+### Key Decisions
+- [Technical choices made with rationale]
 
-## Challenges
-- [Issues encountered]
-- [Workarounds used]
-- [Items needing follow-up]
+### Next Priority
+- [Most important task for next session]
 
-## Next Session
-- [Top priority task]
-- [Preparation needed]
+### Project Health
+- Status: [Green/Yellow/Red]
+- Performance: [Frame rate and device notes]
+- Technical Debt: [Current level and concerns]
 
-## Notes
-- [Technical insights]
-- [Performance observations]
-- [Ideas for future]
+### Notes
+- [Additional observations, learnings, or concerns]
