@@ -64,7 +64,7 @@ function calculateTimeBonus(timeLeft) {
 - Sound effects reinforce positive achievements
 
 **Score Breakdown Display:**
-```
+```markdown
 Level Complete!
 Base Score: 500 points (Level 5)
 Time Bonus: 180 points (18 seconds)
