@@ -2,7 +2,7 @@
 
 Use this prompt when ready to move between development stages:
 
-```
+```markdown
 Neural Nexus stage transition from [CURRENT STAGE] to [NEXT STAGE]:
 
 ## 🎯 TRANSITION READINESS ASSESSMENT
