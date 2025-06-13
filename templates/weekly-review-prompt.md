@@ -3,7 +3,7 @@
 Use this prompt every Friday to assess project health and plan ahead:
 
 ```
-Neural Nexus weekly project review:
+Neural Nexus weekly project review. Analyze and provide:
 
 ## 📈 PROGRESS SUMMARY
 **Features Completed This Week:**
@@ -68,81 +68,91 @@ Format response as structured markdown for easy knowledge base addition.
 ## Usage Guidelines
 
 ### When to Use
-- **Every Friday** - End of week review and planning
-- **Before stage transitions** - Comprehensive assessment
-- **After major milestones** - Project health check
-- **When feeling stuck** - Identify blockers and solutions
+- **Every Friday** - End of work week review
+- **Before major milestones** - Assess readiness
+- **When feeling lost** - Get back on track
+- **Monthly planning** - Broader strategic review
 
-### How to Use
-1. **Be Honest**: Realistic assessment of progress and challenges
-2. **Include Metrics**: Specific numbers where possible (frame rates, completion times)
-3. **Plan Realistically**: Set achievable goals for next week
-4. **Document Decisions**: Capture reasoning behind architectural choices
-5. **Assess Risks**: Identify potential problems before they become critical
+### What to Include
+- **Honest Assessment** - Real progress, not wishful thinking
+- **Specific Details** - Exact features, concrete blockers
+- **Forward Planning** - Clear priorities for next week
+- **Risk Awareness** - Potential problems and solutions
 
-### Quality Example
+### Example Weekly Review
 
 ```
 ## 📈 PROGRESS SUMMARY
 **Features Completed This Week:**
-- Web Audio API integration with 5 sound effects (connect, complete, error, ambient, success)
-- Save system using localStorage with progress persistence across sessions
-- Tutorial overlay system for first-time players with interactive guidance
+- Audio system integration with 5 core sound effects
+- Save game functionality using localStorage
+- Mobile touch optimization improving responsiveness by 25%
 
 **Development Velocity:**
-- Faster than last week (completed 3 major features vs 2 last week)
-- Benefiting from established patterns and workflow efficiency
+- Faster than last week (3 features vs 1 feature)
+- Audio implementation went smoother than expected
+- Touch optimization required less refactoring than planned
 
 **Blockers Resolved:**
-- Audio latency issues on mobile Safari resolved with Web Audio context initialization
-- Touch event conflicts with scroll gestures fixed using passive: false
+- Canvas touch events now work consistently across iOS/Android
+- Audio context initialization fixed for mobile browsers
+- Performance bottleneck in particle system resolved
 
 **New Blockers Identified:**
-- localStorage size limits becoming concern with detailed progress tracking
-- Level generation algorithm needs optimization for complex patterns
+- Safari audio autoplay policy requires user interaction
+- LocalStorage size limits may affect save data for high levels
+- iPhone SE screen size reveals UI scaling issues
 
 ## 🏗️ ARCHITECTURE & CODE HEALTH
 **New Patterns Introduced:**
-- Audio manager singleton pattern for centralized sound control
-- Observer pattern for game state changes and UI updates
+- Audio manager class with preloading and fallback handling
+- Save data compression using JSON.stringify optimization
+- Touch event delegation pattern for better performance
 
 **Technical Debt Status:**
-- **Created:** Temporary hardcoded audio file paths (needs asset loading system)
-- **Resolved:** Refactored particle system to use object pooling
-- **Overall Level:** Low (well-managed, no critical issues)
+- **Created:** Temporary audio context workaround for iOS
+- **Resolved:** Cleaned up particle system redundant code
+- **Overall Level:** Low (minimal shortcuts, good documentation)
 
 **Performance Impact:**
-- Audio system adds ~50KB to bundle size, no frame rate impact
-- Save system negligible performance impact, < 1ms operations
+- Audio system adds 2ms to load time but improves user experience
+- Save system has negligible performance impact
+- Touch optimization actually improved overall responsiveness
 
 ## 📅 NEXT WEEK PLANNING
 **Priority 1 (Must Complete):**
-1. Power-up system foundation - 12 hours - Core gameplay enhancement ready for testing
+1. Tutorial system - 8 hours - Critical for user onboarding
 
 **Priority 2 (Should Complete):**
-1. Achievement system basic framework - 8 hours - Player engagement and retention
-2. Level editor prototype - 6 hours - User-generated content potential
+1. Achievement system - 6 hours - Improves player retention
+2. Level editor prototype - 4 hours - Future content creation
 
 **Priority 3 (Nice to Have):**
-1. Advanced particle effects for power-ups - 4 hours - Visual polish enhancement
+1. Visual effect enhancements - 3 hours - Polish and appeal
+
+## ⚠️ RISK ASSESSMENT
+**Potential Issues:**
+- Tutorial complexity → Keep it simple, test with real users
+- Achievement data persistence → Use same save system as game progress
+
+**Dependency Concerns:**
+- No external dependencies identified this week
 ```
 
-## Success Indicators
+## Benefits of Weekly Reviews
 
-A good weekly review should result in:
-- ✅ Clear understanding of actual progress vs planned progress
-- ✅ Realistic goals for the upcoming week
-- ✅ Identified risks with mitigation strategies
-- ✅ Updated documentation priorities
-- ✅ Maintained or improved development velocity
+- **Maintains Momentum** - Clear progress tracking prevents stagnation
+- **Identifies Patterns** - Recognize what works and what doesn't
+- **Prevents Debt** - Regular attention to code quality and documentation
+- **Plans Strategically** - Think beyond just the next task
+- **Manages Risk** - Identify problems before they become critical
 
-## Red Flags
+## Red Flags in Weekly Reviews
 
-Watch for these warning signs in your weekly reviews:
-- 🚨 **Consistently missing goals** → Reevaluate planning approach
-- 🚨 **Growing technical debt** → Allocate time for cleanup
-- 🚨 **Unclear priorities** → Better goal setting needed
-- 🚨 **No performance metrics** → Add measurement and monitoring
-- 🚨 **Avoiding difficult tasks** → Break down into smaller pieces
+- 🚨 **No completed features** → Check if tasks are too large
+- 🚨 **Recurring same blockers** → Need different approach
+- 🚨 **Growing technical debt** → Dedicate time to cleanup
+- 🚨 **Unclear priorities** → Step back and reassess goals
+- 🚨 **Performance regression** → Immediate investigation needed
 
-Remember: The weekly review is your opportunity to course-correct before problems become critical. Be honest about challenges and celebrate genuine progress.
+Remember: Weekly reviews are investments in project health. 15 minutes every Friday prevents hours of confusion later.
