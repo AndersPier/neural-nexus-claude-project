@@ -1,229 +1,198 @@
-# Core Game Mechanics Documentation
+# Core Mechanics - Neural Nexus
 
 ## Connection System
 
 ### Basic Mechanics
-The core gameplay revolves around connecting neural network nodes to form specific patterns. Players click and drag between nodes to create connections that match a target pattern shown as dotted lines.
+The core gameplay revolves around creating connections between nodes by dragging from one node to another. This system is designed to be:
 
-### Node Types
-```javascript
-const nodeTypes = {
-  normal: {
-    color: '#333366',
-    activeColor: '#00d4ff',
-    description: 'Standard connection points'
-  },
-  source: {
-    color: '#00ff64',
-    description: 'Starting points for network patterns'
-  },
-  target: {
-    color: '#ff6400', 
-    description: 'End points for network completion'
-  }
-};
-```
+- **Intuitive**: Natural click/drag or tap/drag interaction
+- **Responsive**: Immediate visual feedback for all actions
+- **Forgiving**: Clear indication of valid targets and actions
+- **Accessible**: Works consistently across all devices and input methods
+
+### Node Types and Behavior
+
+#### Source Nodes (Green - #00ff64)
+- **Purpose**: Starting points for network patterns
+- **Visual**: Bright green color with enhanced glow
+- **Behavior**: Often serve as connection origins in level patterns
+- **Player Guidance**: Usually good starting points for solving puzzles
+
+#### Normal Nodes (Blue - #333366/#00d4ff)
+- **Purpose**: Standard connection points
+- **Visual**: Blue color that brightens when connected
+- **Behavior**: Can connect to any other node
+- **Player Guidance**: Form the majority of puzzle elements
+
+#### Target Nodes (Orange - #ff6400)
+- **Purpose**: End points for network patterns
+- **Visual**: Orange color with distinctive glow
+- **Behavior**: Often serve as connection destinations
+- **Player Guidance**: Usually good final connection points
 
 ### Connection Rules
-1. **Valid Connections**: Any node can connect to any other node
-2. **Bidirectional**: All connections work in both directions
-3. **No Self-Connection**: Nodes cannot connect to themselves
-4. **No Duplicates**: Only one connection allowed between any two nodes
-5. **Visual Feedback**: Invalid attempts show clear feedback
 
-### Interaction Patterns
-- **Desktop**: Click and drag between nodes
-- **Mobile**: Tap and drag with finger
-- **Feedback**: Immediate visual response to all interactions
-- **Error Handling**: Graceful handling of invalid connection attempts
-
-## Level Generation System
-
-### Difficulty Progression
+#### Valid Connections
 ```javascript
-const difficultyProgression = {
-  beginner: {
-    levels: '1-5',
-    nodes: '3-4',
-    connections: '2-3',
-    timeLimit: '60s',
-    focus: 'Learning basic mechanics'
-  },
-  intermediate: {
-    levels: '6-15', 
-    nodes: '4-7',
-    connections: '3-6',
-    timeLimit: '50-60s',
-    focus: 'Pattern recognition skills'
-  },
-  advanced: {
-    levels: '16-25',
-    nodes: '7-10',
-    connections: '6-12',
-    timeLimit: '40-50s', 
-    focus: 'Complex network strategy'
-  },
-  expert: {
-    levels: '26+',
-    nodes: '10-12',
-    connections: '8-16',
-    timeLimit: '30-45s',
-    focus: 'Master-level challenges'
-  }
-};
-```
-
-### Pattern Types
-1. **Linear Chains**: Simple A→B→C→D connections
-2. **Hub Networks**: Central node connecting to multiple others
-3. **Parallel Paths**: Multiple independent connection chains
-4. **Complex Networks**: Intricate interconnected patterns
-5. **Symmetrical Designs**: Balanced, aesthetically pleasing layouts
-
-### Algorithm Approach
-```javascript
-function generateLevel(levelNumber) {
-  const nodeCount = Math.min(5 + Math.floor(levelNumber / 2), 12);
-  const connectionCount = Math.min(nodeCount - 1 + Math.floor(levelNumber / 3), nodeCount * 2);
-  
-  // Place nodes in circular pattern with randomization
-  const nodes = generateNodePositions(nodeCount);
-  
-  // Generate valid connection pattern
-  const targetPattern = generateConnections(nodes, connectionCount);
-  
-  // Ensure pattern is solvable and engaging
-  return validatePattern(nodes, targetPattern);
+// Connection validation logic
+function canConnect(nodeA, nodeB) {
+  return nodeA !== nodeB &&                    // Can't connect to self
+         !connectionExists(nodeA, nodeB) &&    // No duplicate connections
+         nodeA.type !== 'disabled' &&          // Node must be active
+         nodeB.type !== 'disabled';            // Target must be active
 }
 ```
 
-## Scoring System
+#### Visual Feedback System
+- **Hover State**: Nodes highlight when mouse/touch approaches
+- **Drag Preview**: Dotted line shows connection being created
+- **Success State**: Solid colored line with particle effects
+- **Error State**: Red flash for invalid connection attempts
+- **Completion State**: Energy flow animation through completed connections
 
-### Point Calculation
+### Pattern Matching System
+
+#### Target Pattern Display
+- **Visual Representation**: Faint dotted white lines (#ffffff with 0.3 opacity)
+- **Line Style**: 5px dash, 5px gap pattern
+- **Stroke Width**: 2px for clear visibility without overwhelming
+- **Update Frequency**: Static display, updates only on level change
+
+#### Completion Detection
 ```javascript
-const scoring = {
-  basePoints: {
-    levelComplete: 100,
-    timeBonus: 10, // per second remaining
-    levelMultiplier: 'level * 50'
-  },
-  bonuses: {
-    perfectCompletion: 'no invalid attempts * 50',
-    speedBonus: 'completion under 30s * 100',
-    consecutiveLevels: 'streak multiplier * 25'
+function checkLevelComplete() {
+  const madeConnections = gameState.connections.map(conn => 
+    [Math.min(conn.nodeA.id, conn.nodeB.id), Math.max(conn.nodeA.id, conn.nodeB.id)]
+  );
+  
+  const targetConnections = gameState.targetPattern.map(([a, b]) => 
+    [Math.min(a, b), Math.max(a, b)]
+  );
+  
+  return targetConnections.every(target => 
+    madeConnections.some(made => made[0] === target[0] && made[1] === target[1])
+  );
+}
+```
+
+### Input Handling
+
+#### Mouse Events
+- **mousedown**: Initiate connection drag
+- **mousemove**: Update drag preview (throttled to 60fps)
+- **mouseup**: Complete or cancel connection
+
+#### Touch Events
+- **touchstart**: Begin touch interaction
+- **touchmove**: Update touch drag (with preventDefault)
+- **touchend**: Finalize touch connection
+
+#### Cross-Platform Considerations
+```javascript
+// Unified event handling
+function getEventPosition(event) {
+  const rect = canvas.getBoundingClientRect();
+  
+  if (event.touches) {
+    // Touch event
+    return {
+      x: event.touches[0].clientX - rect.left,
+      y: event.touches[0].clientY - rect.top
+    };
+  } else {
+    // Mouse event
+    return {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top
+    };
   }
-};
+}
 ```
 
-### Example Score Calculation
-```
-Level 5 completion in 35 seconds with no mistakes:
-- Base: 100 points
-- Time bonus: 25 seconds remaining * 10 = 250 points  
-- Level multiplier: 5 * 50 = 250 points
-- Perfect bonus: 50 points
-- Total: 650 points
-```
+## Difficulty Progression
 
-### High Score Tracking
-- Local storage persistence
-- Weekly/monthly leaderboards (future)
-- Achievement system integration
-- Progress tracking across sessions
+### Level Generation Algorithm
 
-## Timing and Pacing
-
-### Time Limits
+#### Node Count Scaling
 ```javascript
-const timingSystem = {
-  baseTime: 60, // seconds for level 1
-  reduction: 2, // seconds reduced every 3 levels
-  minimum: 30, // never less than 30 seconds
-  calculation: 'Math.max(30, 60 - Math.floor(level / 3) * 2)'
-};
+const nodeCount = Math.min(5 + Math.floor(level * 0.7), 12);
 ```
+- **Level 1-3**: 5-6 nodes (learning phase)
+- **Level 4-10**: 6-9 nodes (skill building)
+- **Level 11-20**: 9-12 nodes (challenge phase)
+- **Level 21+**: 12 nodes (mastery phase)
 
-### Flow State Management
-- **Gradual Ramp**: Difficulty increases smoothly
-- **Recovery Levels**: Occasional easier levels to maintain confidence
-- **Time Pressure**: Creates urgency without panic
-- **Clear Progress**: Visual indication of completion status
-
-## Visual Feedback System
-
-### Connection States
-1. **Target Pattern**: Dotted white lines showing required connections
-2. **Active Connections**: Solid colored lines for completed connections
-3. **Current Drag**: Semi-transparent preview line during connection creation
-4. **Invalid Attempts**: Red glow and shake animation for errors
-5. **Completion**: Particle burst effects and color changes
-
-### Node Animation
+#### Connection Complexity
 ```javascript
-const nodeAnimations = {
-  idle: {
-    pulse: 'breathing effect with sine wave',
-    glow: 'subtle outer glow animation'
-  },
-  hover: {
-    scale: '1.1x size increase',
-    brightness: 'increased luminosity'
-  },
-  connected: {
-    energy: 'flowing particles through connections',
-    color: 'shift to active state'
-  }
-};
+const connectionCount = Math.min(
+  nodeCount - 1 + Math.floor(level / 2), 
+  nodeCount * 2
+);
 ```
+- **Early Levels**: Minimum spanning tree patterns
+- **Mid Levels**: Additional parallel paths
+- **Late Levels**: Near-complete graphs with strategic complexity
 
-## Audio Design Framework (Planned)
-
-### Sound Categories
+#### Timing Progression
 ```javascript
-const audioDesign = {
-  feedback: {
-    nodeTouch: 'soft electronic blip',
-    connectionMade: 'satisfying snap/lock sound',
-    connectionFailed: 'gentle error tone',
-    levelComplete: 'triumphant harmonic sequence'
-  },
-  ambient: {
-    background: 'subtle electronic atmosphere',
-    nodeHum: 'quiet frequency-based ambience',
-    energyFlow: 'soft electrical crackling'
-  },
-  ui: {
-    buttonPress: 'clean interface sounds',
-    menuTransition: 'smooth whoosh effects'
-  }
-};
+const timeLimit = Math.max(45, 60 - Math.floor(level / 3) * 2);
+```
+- **Level 1-2**: 60 seconds (generous learning time)
+- **Level 3-5**: 58 seconds (slight pressure introduction)
+- **Level 6-8**: 56 seconds (building urgency)
+- **Level 9+**: Continues decreasing to minimum of 45 seconds
+
+### Pattern Design Philosophy
+
+#### Early Game (Levels 1-5)
+- **Simple chains**: A→B→C linear patterns
+- **Basic shapes**: Triangles and simple stars
+- **Clear structure**: Obvious starting and ending points
+- **Minimal complexity**: 3-5 connections maximum
+
+#### Mid Game (Levels 6-15)
+- **Hub patterns**: Central nodes with multiple connections
+- **Parallel paths**: Multiple connection chains
+- **Symmetrical designs**: Balanced, aesthetically pleasing patterns
+- **Moderate complexity**: 5-8 connections
+
+#### Late Game (Levels 16+)
+- **Complex networks**: Interconnected webs of connections
+- **Strategic puzzles**: Require planning and optimization
+- **Near-complete graphs**: Most nodes connect to most others
+- **High complexity**: 8-12 connections
+
+## Performance Optimization
+
+### Node Rendering Optimization
+```javascript
+// Efficient node drawing with minimal canvas operations
+function drawNode(node) {
+  const time = Date.now() * 0.003;
+  const pulse = Math.sin(time + node.pulsePhase) * 0.2 + 1;
+  
+  // Pre-calculate positions to avoid repeated math
+  const x = node.x;
+  const y = node.y;
+  const radius = node.radius * pulse;
+  
+  // Batch similar drawing operations
+  ctx.save();
+  drawNodeGlow(x, y, radius, node.type);
+  drawNodeCore(x, y, radius, node.type);
+  drawNodeHighlight(x, y, radius);
+  ctx.restore();
+}
 ```
 
-### Audio Implementation Principles
-- **Subtle**: Never overwhelming or distracting
-- **Responsive**: Immediate feedback for actions
-- **Contextual**: Different sounds for different game states
-- **Optional**: Always allow muting for accessibility
-- **Performance**: Lightweight files, efficient playback
+### Connection System Performance
+- **Event Throttling**: Mouse/touch events limited to 60fps
+- **Hit Detection**: Optimized circle-point collision detection
+- **Rendering**: Batched line drawing operations
+- **Memory**: Reuse connection objects instead of creating new ones
 
-## Accessibility Considerations
-
-### Visual Accessibility
-- **Color Blind Support**: Pattern recognition doesn't rely solely on color
-- **High Contrast**: Clear visual distinction between elements
-- **Scalable UI**: Responsive design for different screen sizes
-- **Clear Typography**: Readable fonts and appropriate sizing
-
-### Motor Accessibility
-- **Touch Targets**: Minimum 44px touch areas on mobile
-- **Drag Tolerance**: Forgiving connection detection
-- **Alternative Inputs**: Keyboard navigation support (future)
-- **Timing Options**: Adjustable time limits (future)
-
-### Cognitive Accessibility
-- **Clear Instructions**: Obvious gameplay mechanics
-- **Progressive Disclosure**: Complexity introduced gradually
-- **Visual Hierarchy**: Important information is prominent
-- **Consistent Patterns**: Predictable interface behavior
-
-This documentation serves as the foundation for all game design decisions and should be updated as mechanics evolve.
+### Success Metrics
+- **Completion Rate**: >80% for first 10 levels
+- **Engagement**: Average 5+ minute sessions
+- **Retention**: >60% return for second session
+- **Performance**: 60fps on desktop, 30fps+ on mobile
