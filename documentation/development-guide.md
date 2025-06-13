@@ -121,19 +121,6 @@ const levelDesign = {
 };
 ```
 
-### Visual Design Patterns
-```css
-/* Color scheme consistency */
-:root {
-  --primary-cyan: #00d4ff;
-  --secondary-magenta: #ff00ff;
-  --success-green: #00ff64;
-  --warning-orange: #ff6400;
-  --background-dark: #0a0a0a;
-  --surface-glass: rgba(255, 255, 255, 0.1);
-}
-```
-
 ## Performance Guidelines
 
 ### Target Metrics
@@ -173,30 +160,19 @@ const levelDesign = {
    }
    ```
 
-## Testing Strategy
+2. **Event Handling Optimization**
+   ```javascript
+   // Throttle mouse move events
+   function throttle(func, delay) {
+     let timeoutId;
+     return (...args) => {
+       clearTimeout(timeoutId);
+       timeoutId = setTimeout(() => func(...args), delay);
+     };
+   }
 
-### Manual Testing Checklist
-```markdown
-**Core Functionality:**
-- [ ] Node connections work with mouse
-- [ ] Node connections work with touch
-- [ ] Level progression advances correctly
-- [ ] Score calculation accurate
-- [ ] Timer counts down properly
-- [ ] Game over conditions trigger
-
-**Performance Testing:**
-- [ ] 60fps on Desktop Chrome/Firefox/Safari
-- [ ] 30fps+ on mobile devices
-- [ ] No memory leaks after 10+ levels
-- [ ] Smooth animations during gameplay
-
-**Device Compatibility:**
-- [ ] Desktop: Windows/Mac/Linux browsers
-- [ ] Mobile: iOS Safari, Android Chrome
-- [ ] Tablet: iPad, Android tablets
-- [ ] Various screen sizes and orientations
-```
+   const throttledMouseMove = throttle(handleMouseMove, 16); // ~60fps
+   ```
 
 ## Troubleshooting
 
@@ -234,19 +210,25 @@ function debugFrameTime() {
 - Use `requestAnimationFrame` properly
 - Check for memory leaks
 
-#### Touch Controls Not Working
-**Problem:** Mobile touch events not registering properly
+### Debug Tools
 ```javascript
-// Solution: Prevent default touch behavior
-canvas.addEventListener('touchstart', (e) => {
-  e.preventDefault(); // Prevent scrolling
-  // Handle touch
-}, { passive: false });
-
-canvas.addEventListener('touchmove', (e) => {
-  e.preventDefault(); // Prevent scrolling
-  // Handle drag
-}, { passive: false });
+// Development debug helper
+if (location.hostname === 'localhost') {
+  window.gameDebug = {
+    state: () => console.table(gameState),
+    skipLevel: () => showLevelComplete(),
+    addTime: (seconds) => gameState.timeLeft += seconds,
+    setLevel: (level) => {
+      gameState.level = level;
+      generateLevel(level);
+    },
+    performance: () => {
+      console.log('Nodes:', gameState.nodes.length);
+      console.log('Connections:', gameState.connections.length);
+      console.log('Memory:', performance.memory?.usedJSHeapSize);
+    }
+  };
+}
 ```
 
 ---
